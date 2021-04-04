@@ -18,6 +18,13 @@ public class playerManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
+    private List<collectable> inventory = new List<collectable>();
+
+    public Text inventoryText;
+
+    public Text descriptionText;
+
+    private int currentIndex;
 
     // Start is called before the first frame update
     void Start()
