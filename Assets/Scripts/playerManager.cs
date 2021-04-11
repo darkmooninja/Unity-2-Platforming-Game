@@ -54,9 +54,67 @@ public class playerManager : MonoBehaviour
         {
             LoseGame();
         }
+        if (inventory.Count == 0)
+
+        {
+
+            // If the inventory is empty
+
+            inventoryText.text = "Current Selection: None";
+
+            descriptionText.text = "";
+
+        }
+
+        else
+
+        {
+
+            inventoryText.text = "Current Selection: " + inventory[currentIndex].collectableName + " " + currentIndex.ToString();
+
+            descriptionText.text = "Press [E] to " + inventory[currentIndex].description;
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+
+        {
+
+            // Using
+
+            if (inventory.Count > 0)
+
+            {
+
+                inventory[currentIndex].Use();
+
+                inventory.RemoveAt(currentIndex);
+
+                currentIndex = (currentIndex - 1) % inventory.Count;
+
+            }
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+
+        {
+
+            if (inventory.Count > 0)
+
+            {
+
+                // Move to next in inventory
+
+                currentIndex = (currentIndex + 1) % inventory.Count;
+
+            }
+
+        }
+
     }
 
-   void FindAllMenus()
+    void FindAllMenus()
     {
         if (healthText == null)
         {
@@ -121,6 +179,25 @@ public class playerManager : MonoBehaviour
     public void ChangeScore(int value)
     {
         score += value;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+
+    {
+
+        if (collision.GetComponent<collectable>() != null)
+
+        {
+
+            collision.GetComponent<collectable>().player = this.gameObject;
+
+            collision.gameObject.transform.parent = null;
+
+            inventory.Add(collision.GetComponent<collectable>());
+
+            collision.gameObject.SetActive(false);
+
+        }
+
     }
 
 }
