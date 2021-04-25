@@ -32,6 +32,7 @@ public class playerManager : MonoBehaviour
         // Makes sure game is "unpaused"
         isGamePaused = false;
         Time.timeScale = 1.0f;
+        
 
         // Make sure all menus are filled in
         FindAllMenus();
