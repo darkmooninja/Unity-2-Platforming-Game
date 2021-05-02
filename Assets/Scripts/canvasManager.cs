@@ -20,13 +20,13 @@ public class canvasManager : MonoBehaviour
     public void ResetLevel()
     {
         StartCoroutine(FadeEffect(SceneManager.GetActiveScene().buildIndex));
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void NextLevel()
     {
         StartCoroutine(FadeEffect(SceneManager.GetActiveScene().buildIndex + 1));
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     IEnumerator FadeEffect(int SceneToLoad)

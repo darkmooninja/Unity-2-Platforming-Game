@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class playerManager : MonoBehaviour
 {
     // Player specific variables
-    private int health;
-    private int score;
+
+    PlayerInfo info;
 
     // Boolean values
     private bool isGamePaused = false;
@@ -29,29 +29,34 @@ public class playerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        info = GameObject.FindWithTag("Info").GetComponent<PlayerInfo>();
+        foreach (collectable item in info.inventory)
+        {
+            item.player = this.gameObject;
+        }
         // Makes sure game is "unpaused"
         isGamePaused = false;
         Time.timeScale = 1.0f;
-        
 
         // Make sure all menus are filled in
         FindAllMenus();
 
         //Start player with initial health and score
-        health = 100;
-        score = 0;
+        //info.health = 100;
+        //info.score = 0;
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        healthText.text = "Health: " + health.ToString();
-        scoreText.text  = "Score:  " + score.ToString();
+        healthText.text = "Health: " + info.health.ToString();
+        scoreText.text  = "Score:  " + info.score.ToString();
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseGame();
         }
-        if (health <= 0)
+        if (info.health <= 0)
         {
             LoseGame();
         }
@@ -174,12 +179,12 @@ public class playerManager : MonoBehaviour
 
     public void ChangeHealth(int value)
     {
-        health += value;
+        info.health += value;
     }
 
     public void ChangeScore(int value)
     {
-        score += value;
+        info.score += value;
     }
     private void OnTriggerEnter2D(Collider2D collision)
 
