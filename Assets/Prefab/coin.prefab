@@ -111,6 +111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb883410dc15a4db3bc5e5cb3b5db5a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectableName: 
+  collectableName: should I just restart?
   description: 
   player: {fileID: 0}
